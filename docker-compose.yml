@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  clientsmicroservice:
+    build:
+      context: .
+      dockerfile: clientsMicroservice/Dockerfile
+    image: net-clients-microservice
+    ports:
+      - "5292:80"
+    networks:
+      - microservicios-network
+
+  accountsmicroservice:
+    build:
+      context: ./accountsMicroservice
+    image: net-accounts-microservice
+    ports:
+      - "5000:80"
+    networks:
+      - microservicios-network
+
+networks:
+  microservicios-network:
+    driver: bridge
